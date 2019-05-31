@@ -26,49 +26,46 @@
         <span class='row'>
             <section class='col-12'>
                 <h6 class='card-header'>Current Train Schedule</h6>
-                <section class='col-12'>
+                <section class=' card-body col-12'>
                     <span class='row'>
-                        <section class='col-3'>
-                            <p class=''>Train Name</p>
-                        </section>
-                        <section class='col-2 p-0'>
-                            <p class=''>Destination</p>
-                        </section>
-                        <section class='col-2 p-0'>
-                            <p class=''>Frequency (Min)</p>
-                        </section>
-                        <section class='col-3 p-0'>
-                            <p class=''>Next Arrival</p>
-                        </section>
-                        <section class='col-2 p-0'>
-                            <p class=''>Minutes Away</p>
-                        </section>
+                        <table class='col-12 mx-auto'>
+                            <thead>
+                                <th class='p-0 text-center'>Train Name</th>
+                                <th class='p-0 text-center'>Destination</th>
+                                <th class='p-0 text-center'>Frequency (Min)</th>
+                                <th class='p-0 text-center'>Next Arrival</th>
+                                <th class='p-0 text-center'>Minutes Away</th>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
                     </span>
                 </section>
             </section>
             <section class='col-12'>
                 <h6 class='card-header'>Add Train</h6>
-                <section class='col-12'>
+                <section class='col-12 card-body'>
                     <span class='row'>
                         <form class='col-12 p-0'>
                             <section class='col-12'>
-                                <p class='mt-1 mb-1'>Train Name</p>
-                                <input class='col-12 trainNameInput'>
+                                <p class='font-weight-bold'>Train Name</p>
+                                <input class='col-12 mb-3 trainNameInput'>
                             </section>
                             <section class='col-12'>
-                                <p class='mt-1 mb-1'>Destination</p>
-                                <input class='col-12 destinationInput'>
+                                <p class='font-weight-bold'>Destination</p>
+                                <input class='col-12 mb-3 destinationInput'>
                             </section>
                             <section class='col-12'>
-                                <p class='mt-1 mb-1'>First Train Time (HH:mm - military time)</p>
-                                <input class='col-12 firstTrainTimeInput'>
+                                <p class='font-weight-bold'>First Train Time (HH:MM - Military Time)</p>
+                                <input class='col-12 mb-3 firstTrainTimeInput'>
                             </section>
                             <section class='col-12'>
-                                <p class='mt-1 mb-1'>Frequency (min)</p>
-                                <input class='col-12 frequencyInput'>
+                                <p class='font-weight-bold'>Frequency (Min)</p>
+                                <input class='col-12 mb-3 frequencyInput'>
                             </section>
                             <section class='col-12'>
-                                <input type='submit' class='btn btn-primary mt-1'>
+                                <input type='submit' class='btn btn-primary mt-3 float-right'>
                             </section>
                         </form>
                     </span>
