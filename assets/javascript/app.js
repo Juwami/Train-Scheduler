@@ -1,4 +1,4 @@
-var firebaseConfig = {
+let firebaseConfig = {
     apiKey: "AIzaSyDFZpUTsrZDFLc4fzswF7_2zilHSiqObwU",
     authDomain: "train-scheduler-a30e5.firebaseapp.com",
     databaseURL: "https://train-scheduler-a30e5.firebaseio.com",
@@ -11,3 +11,10 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 
 let database = firebase.database()
+
+$('#submitBtn').on('click', function() {
+    let $trainNameInput = $('.trainNameInput').value().trim()
+    let $destinationInput = $('.destinationInput').value().trim()
+    let $firstTrainTimeInput = $('.firstTrainTimeInput').value().trim()
+    let $frequencyInput = $('.frequencyInput').value().trim()
+})
