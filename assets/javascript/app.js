@@ -13,8 +13,15 @@ firebase.initializeApp(firebaseConfig)
 let database = firebase.database()
 
 $('#submitBtn').on('click', function() {
-    let $trainNameInput = $('.trainNameInput').value().trim()
-    let $destinationInput = $('.destinationInput').value().trim()
-    let $firstTrainTimeInput = $('.firstTrainTimeInput').value().trim()
-    let $frequencyInput = $('.frequencyInput').value().trim()
+    event.preventDefault()
+
+    let $trainNameInput = $('.trainNameInput').val().trim()
+    let $destinationInput = $('.destinationInput').val().trim()
+    let $firstTrainTimeInput = $('.firstTrainTimeInput').val().trim()
+    let $frequencyInput = $('.frequencyInput').val().trim()
+
+    console.log($trainNameInput)
+    console.log($destinationInput)
+    console.log($firstTrainTimeInput)
+    console.log($frequencyInput)
 })
