@@ -1,4 +1,16 @@
-let firebaseConfig = {
+let $trainNameInput = $('.trainNameInput').val().trim()
+let $destinationInput = $('.destinationInput').val().trim()
+let $firstTrainTimeInput = $('.firstTrainTimeInput').val().trim()
+let $frequencyInput = $('.frequencyInput').val().trim()
+
+let trainEntered = {
+    trainname: $trainNameInput,
+    destination: $destinationInput,
+    firstTrain: $firstTrainTimeInput,
+    frequency: $frequencyInput
+}
+
+const firebaseConfig = {
     apiKey: "AIzaSyDFZpUTsrZDFLc4fzswF7_2zilHSiqObwU",
     authDomain: "train-scheduler-a30e5.firebaseapp.com",
     databaseURL: "https://train-scheduler-a30e5.firebaseio.com",
@@ -12,16 +24,21 @@ firebase.initializeApp(firebaseConfig)
 
 let database = firebase.database()
 
-$('#submitBtn').on('click', function() {
+$('#submitBtn').on('click', function () {
     event.preventDefault()
 
-    let $trainNameInput = $('.trainNameInput').val().trim()
-    let $destinationInput = $('.destinationInput').val().trim()
-    let $firstTrainTimeInput = $('.firstTrainTimeInput').val().trim()
-    let $frequencyInput = $('.frequencyInput').val().trim()
+    console.log(trainEntered)
 
-    console.log($trainNameInput)
-    console.log($destinationInput)
-    console.log($firstTrainTimeInput)
-    console.log($frequencyInput)
+    // database.ref().push(trainEntered)
+
+    $('.trainNameInput').val('')
+    $('.destinationInput').val('')
+    $('.firstTrainTimeInput').val('')
+    $('.frequencyInput').val('')
 })
+
+database.ref().on('child_added', function(snapshot) {
+    console.log(snapshot.val())
+
+    
+}
