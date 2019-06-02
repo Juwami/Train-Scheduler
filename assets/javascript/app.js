@@ -36,7 +36,7 @@ $('#submitBtn').on('click', function () {
 
     console.log(trainEntered)
 
-    // database.ref().push(trainEntered)
+    database.ref().push(trainEntered)
 
     $('.trainNameInput').val('')
     $('.destinationInput').val('')
@@ -48,7 +48,7 @@ database.ref().on('child_added', function (snapshot) {
     console.log(snapshot.val())
 
     let destination = snapshot.val().destination
-    let firstTrain = snapshot.val().firstTrain
+    let firstTrain = parseInt(snapshot.val().firstTrain)
     let trainFrequency = snapshot.val().frequency
     let trainName = snapshot.val().trainName
 
@@ -57,6 +57,8 @@ database.ref().on('child_added', function (snapshot) {
     console.log(trainFrequency)
     console.log(trainName)
 
+    nextTrainArrive(firstTrain)
+
     let newTrainRow = $('<tr>').append(
         $('<td>').text(trainName).addClass('text-center'),
         $('<td>').text(destination).addClass('text-center'),
@@ -64,9 +66,22 @@ database.ref().on('child_added', function (snapshot) {
         $('<td>').text('next arrival: current time + fre').addClass('text-center'),
         $('<td>').text('minutes away').addClass('text-center')
     )
+
     $('#trainScheduleBody').append(newTrainRow)
 })
 
 let updateTime = function () {
     $('#currentTime').html(moment().format('D/MMM/YYYY HH:mm:ss'))
+}
+
+let nextTrainArrive = function(train) {
+    if (train > moment().format('HHmm')) {
+        console.log(train)
+        console.log(moment().format('HHmm'))
+
+
+    }
+    else {
+        console.log('false')
+    }
 }
