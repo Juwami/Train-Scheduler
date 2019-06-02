@@ -15,14 +15,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="assets/css/style.css">>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-
-    <header class='jumbotron display-4 text-center'>Choo, Choo, Train It Up!</header>
+    
+    <header class='jumbotron display-3 text-center p-3 m-0'>Choo, Choo, Train It Up!</header>
 
     <main class='container'>
+        <header class='display-4 text-center border border-dark rounded mt-1 mb-1' id='currentTime'></header>
         <span class='row'>
             <section class='col-12'>
                 <h6 class='card-header'>Current Train Schedule</h6>
@@ -36,7 +38,7 @@
                                 <th class='p-0 text-center' scope='col'>Next Arrival</th>
                                 <th class='p-0 text-center' scope='col'>Minutes Away</th>
                             </thead>
-                            <tbody>
+                            <tbody id='trainScheduleBody'>
 
                             </tbody>
                         </table>
@@ -50,19 +52,19 @@
                         <form class='col-12 p-0'>
                             <section class='col-12'>
                                 <p class='font-weight-bold'>Train Name</p>
-                                <input class='col-12 mb-3 trainNameInput'>
+                                <input class='col-12 mb-3 trainNameInput' placeholder='Oxford Train'>
                             </section>
                             <section class='col-12'>
                                 <p class='font-weight-bold'>Destination</p>
-                                <input class='col-12 mb-3 destinationInput'>
+                                <input class='col-12 mb-3 destinationInput' placeholder='Seattle'>
                             </section>
                             <section class='col-12'>
-                                <p class='font-weight-bold'>First Train Time (HH:MM - Military Time)</p>
-                                <input class='col-12 mb-3 firstTrainTimeInput'>
+                                <p class='font-weight-bold'>First Train Time (HHMM - Military Time)</p>
+                                <input class='col-12 mb-3 firstTrainTimeInput' placeholder='0815' type='number' onkeydown='return event.keyCode !== 69'>
                             </section>
                             <section class='col-12'>
                                 <p class='font-weight-bold'>Frequency (Min)</p>
-                                <input class='col-12 mb-3 frequencyInput'>
+                                <input class='col-12 mb-3 frequencyInput' type='number' onkeydown='return event.keyCode !== 69' placeholder='30'>
                             </section>
                             <section class='col-12'>
                                 <input type='submit' id='submitBtn' class='btn btn-primary mt-3 float-right'>
