@@ -16,7 +16,6 @@ $(document).ready(function () {
     $('#currentTime').html(moment().format('D/MMM/YYYY HH:mm:ss'))
     updateTime()
     setInterval(updateTime, 1000)
-
 })
 
 $('#submitBtn').on('click', function () {
@@ -48,7 +47,7 @@ database.ref().on('child_added', function (snapshot) {
     console.log(snapshot.val())
 
     let destination = snapshot.val().destination
-    let firstTrain = parseInt(snapshot.val().firstTrain)
+    let firstTrain = snapshot.val().firstTrain
     let trainFrequency = snapshot.val().frequency
     let trainName = snapshot.val().trainName
 
@@ -57,14 +56,15 @@ database.ref().on('child_added', function (snapshot) {
     console.log(trainFrequency)
     console.log(trainName)
 
-    nextTrainArrive(firstTrain)
+    let minutesNeedWait = minutesTilTrain(firstTrain, trainFrequency)
+    let NextTrainArrival = nextTrainArrival(firstTrain, trainFrequency)
 
     let newTrainRow = $('<tr>').append(
         $('<td>').text(trainName).addClass('text-center'),
         $('<td>').text(destination).addClass('text-center'),
         $('<td>').text(trainFrequency).addClass('text-center'),
-        $('<td>').text('next arrival: current time + fre').addClass('text-center'),
-        $('<td>').text('minutes away').addClass('text-center')
+        $('<td>').text(NextTrainArrival).addClass('text-center'),
+        $('<td>').text(minutesNeedWait).addClass('text-center')
     )
 
     $('#trainScheduleBody').append(newTrainRow)
@@ -74,14 +74,31 @@ let updateTime = function () {
     $('#currentTime').html(moment().format('D/MMM/YYYY HH:mm:ss'))
 }
 
-let nextTrainArrive = function(train) {
-    if (train > moment().format('HHmm')) {
-        console.log(train)
-        console.log(moment().format('HHmm'))
+let minutesTilTrain = function (train, frequency) {
+    let firstTimeConverted = moment(train, 'HH:mm').subtract(1, 'years')
+    // let currentTime = moment().format('HHmm')
+    let diffTime = moment().diff(moment(firstTimeConverted), 'minutes')
+    console.log('Difference In Time: ' + diffTime)
 
+    let remainder = diffTime % frequency
+    console.log('Remainder of DiffTime And Frequency: ' + remainder)
 
-    }
-    else {
-        console.log('false')
-    }
+    let minutesTil = frequency - remainder
+    return minutesTil
+}
+
+let nextTrainArrival = function (train, frequency) {
+    let firstTimeConverted = moment(train, 'HH:mm').subtract(1, 'years')
+    // let currentTime = moment().format('HHmm')
+    let diffTime = moment().diff(moment(firstTimeConverted), 'minutes')
+    console.log('Difference In Time: ' + diffTime)
+
+    let remainder = diffTime % frequency
+    console.log('Remainder of DiffTime And Frequency: ' + remainder)
+
+    let minutesUntilTrain = frequency - remainder
+    console.log(minutesUntilTrain)
+
+    let nextTrain = moment().add(minutesUntilTrain, 'minutes').format('HH:mm')
+    return nextTrain
 }
